@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Department>
+﻿@model Department
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -9,10 +9,35 @@
 </div>
 
 <div>
+    <h4>Department List</h4>
     <ul>
-        @foreach(var item in Model)
+        @foreach(var item in ViewBag.DepartmentList)
         {
-            <li>@item.DepartmentName</li>
+            <li>@item.DepartmentName <button asp-action="Manage">Select</button></li>
         }
     </ul>
 </div>
+
+<h4>Add Department</h4>
+<form asp-action="add" method="post">
+    <input type="text" asp-for="DepartmentName"/>
+    <select asp-for="FacultyId">
+		@foreach (var facultyList in ViewBag.FacultyList)
+		{
+            <option value="@facultyList.Id">@facultyList.FacultyName</option>
+		}
+    </select>
+	<button type="submit">Submit</button>
+    </form>
+
+<h4>Update Department</h4>
+<form asp-action="add" method="post">
+    <input type="text" asp-for="DepartmentName" />
+    <select asp-for="FacultyId">
+        @foreach (var facultyList in ViewBag.FacultyList)
+        {
+            <option value="@facultyList.Id">@facultyList.FacultyName</option>
+        }
+    </select>
+    <button type="submit">Submit</button>
+</form>
