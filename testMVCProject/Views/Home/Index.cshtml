@@ -18,19 +18,29 @@
     </ul>
 </div>
 
-<h4>Add Department</h4>
-<form asp-action="add" method="post">
-    <input type="text" asp-for="DepartmentName"/>
+@if (ViewBag.Department != null)
+{
+    <h4>Update Department</h4>
+<form asp-action="Manage" method="post">
+    <input type="text" asp-for="DepartmentName"value="@ViewBag.Department.DepartmentName"/>
     <select asp-for="FacultyId">
-		@foreach (var facultyList in ViewBag.FacultyList)
-		{
-            <option value="@facultyList.Id">@facultyList.FacultyName</option>
+        @foreach (var facultyList in ViewBag.FacultyList)
+        {
+            @if (ViewBag.Department.FacultyId == facultyList.Id)
+            {
+                <option selected value="@facultyList.Id">@facultyList.FacultyName</option>
+            }else
+            {
+                <option value="@facultyList.Id">@facultyList.FacultyName</option>
+            }
 		}
     </select>
 	<button type="submit">Submit</button>
     </form>
+}
 
-<h4>Update Department</h4>
+
+<h4>Add Department</h4>
 <form asp-action="add" method="post">
     <input type="text" asp-for="DepartmentName" />
     <select asp-for="FacultyId">
