@@ -42,7 +42,7 @@ namespace testMVCProject.Controllers
         public async Task<IActionResult> add(Department details)
         {
             var addDepartment = new Department();
-            addDepartment.DepartmentName = details.DepartmentName; 
+            addDepartment.DepartmentName = details.DepartmentName;
             addDepartment.FacultyId = details.FacultyId;
             await _departmentServices.Add(addDepartment);
             return RedirectToAction("Index");
